@@ -7,28 +7,33 @@
 
       <!-- Form for predicitive model parameters--------------- -->
       <h4 style="text-align:center">Input customer parameters and press "Run"</h4>
+      
       <a href="{{url_for('home.welcome')}}"><h5> <-- Return Home</h5></a>
+
     <div class="input-output" id="input-output">
       <div class="attributes" id="attributes">
 
-    <form action="{{url_for('home.attributes')}}" method="POST">
-    {{ form.hidden_tag() }}
-    {{ form.CreditScore.label}}<br>{{ form.CreditScore }}<br>
-    {{ form.Gender.label }}<br>{{ form.Gender }}<br>
-    {{ form.Age.label }}<br>{{ form.Age }}<br>
-    {{ form.Balance.label}}<br> {{form.Balance}}<br>
-    {{ form.Tenure.label }}<br>{{ form.Tenure }}<br>
-    {{ form.NumOfProducts.label }}<br>{{ form.NumOfProducts }}<br>
-    {{ form.HasCrCard.label }}<br>{{ form.HasCrCard }}<br>
-    {{ form.IsActiveMember.label }}<br>{{ form.IsActiveMember }}<br>
-    {{ form.EstimatedSalary.label }}<br>{{ form.EstimatedSalary }}<br>
-    {{ form.submit() }}
+        <form action="{{url_for('home.attributes')}}" method="POST">
+          {{ form.hidden_tag() }}
+          {{ form.CreditScore.label}}<br>{{ form.CreditScore }}<br>
+          {{ form.Gender.label }}<br>{{ form.Gender }}<br>
+          {{ form.Age.label }}<br>{{ form.Age }}<br>
+          {{ form.Balance.label}}<br> {{form.Balance}}<br>
+          {{ form.Tenure.label }}<br>{{ form.Tenure }}<br>
+          {{ form.NumOfProducts.label }}<br>{{ form.NumOfProducts }}<br>
+          {{ form.HasCrCard.label }}<br>{{ form.HasCrCard }}<br>
+          {{ form.IsActiveMember.label }}<br>{{ form.IsActiveMember }}<br>
+          {{ form.EstimatedSalary.label }}<br>{{ form.EstimatedSalary }}<br>
+          {{ form.submit() }}
 
-    </form>
+        </form>
 
-    </div>
-    <form class="" action="{{url_for('home.attributes')}}" method="GET">
+      </div>
+
       <div class="textarea" id="textarea">
+
+        <form class="" action="{{url_for('home.attributes')}}" method="GET">
+
         <textarea name="results" rows="15" cols="45" disabled>
           Customer with parameters of:
           Credit Score = {{credit_score}}
@@ -44,12 +49,14 @@
           Has a churn prediction of: {{result}}
 
         </textarea>
-      </div>
 
-    </form>
-
+        </form>
 
       </div>
+
+
+    </div>
+
     <style>
 
        .input-output{
