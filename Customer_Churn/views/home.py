@@ -9,7 +9,7 @@ import numpy as np
 
 home = Blueprint('home',__name__)
 
-@home.route('/')
+@home.route('/',methods=["GET","POST"])
 @login_required
 def welcome():
     return render_template('welcome.html')
