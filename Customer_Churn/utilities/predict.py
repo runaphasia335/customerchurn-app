@@ -30,7 +30,7 @@ X_train = scaler.transform(X_train)
 
 X_test = scaler.transform(X_test)
 
-epochs = 30
+epochs = 20
 learning_rate = 0.2
 decay_rate= learning_rate/epochs
 momentum = 0.8
