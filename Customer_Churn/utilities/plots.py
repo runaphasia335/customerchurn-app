@@ -1,5 +1,5 @@
 
-from Customer_Churn.utilities.predict import df
+# from Customer_Churn.utilities.predict import df
 from sklearn.cluster import KMeans
 import pandas as pd
 import numpy as np
@@ -9,6 +9,13 @@ from plotly.subplots import make_subplots
 import plotly.express as px
 import plotly.io as pio
 import json
+
+df = pd.read_csv('Customer_Churn/churn.csv')
+df.drop(['RowNumber','Surname','Geography','CustomerId'],axis=1,inplace=True)
+
+df.replace('Female',0,inplace=True)
+df.replace('Male',1,inplace=True)
+
 former = df.loc[df['Exited']==0]
 current = df.loc[df['Exited']==1]
 

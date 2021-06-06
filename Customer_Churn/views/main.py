@@ -3,6 +3,7 @@ from flask_login import login_user, current_user, logout_user, login_required
 from Customer_Churn.forms.forms import LoginForm,RegistrationForm
 from Customer_Churn.models import User
 from Customer_Churn import db
+from Customer_Churn.utilities.predict import model
 
 main = Blueprint('main', __name__)
 
@@ -14,10 +15,12 @@ def login():
       user = User.query.filter_by(username=form.username.data).first()
       if user.check_password(form.password.data) and user is not None:
          login_user(user)
+         model_predict = model()
+         model_predict.save('model')
          next = request.args.get('next')
 
          if next == None or not next[0] == '/':
-            next =  url_for('home.attributes')
+            next =  url_for('home.welcome')
          return redirect(next)
    return render_template('index.html',form=form)
 
@@ -32,6 +35,7 @@ def register():
       db.session.add(user)
       db.session.commit()
       print('user added')
+     
       return redirect(url_for('main.login'))
    print('routing to register.html')
    return render_template('register.html',form=form)

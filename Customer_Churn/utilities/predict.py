@@ -49,17 +49,18 @@ def model():
 
     model.compile(optimizer=sgd,loss='binary_crossentropy',metrics=['accuracy'])
 
+    model.fit(x=X_train,y=y_train,epochs=epochs)
+
     return model
 
-model = model()
-model.fit(x=X_train,y=y_train,epochs=epochs)
-
-
-
-model.save('model')
+# model_predict = model()
+# # model.fit(x=X_train,y=y_train,epochs=epochs)
+#
+#
+#
+# model_predict.save('model')
 
 def scaling(var):
-
     var = scaler.transform(var)
     return var
 

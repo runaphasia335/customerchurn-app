@@ -7,14 +7,16 @@ import pandas as pd
 import numpy as np
 
 
-
-
 home = Blueprint('home',__name__)
 
-@home.route('/',methods=['GET','POST'])
+@home.route('/')
+@login_required
+def welcome():
+    return render_template('welcome.html')
+
+@home.route('/predict',methods=['GET','POST'])
 @login_required
 def attributes():
-
 
     form = AttributesForm()
 
@@ -37,9 +39,9 @@ def attributes():
 
 
     if form.validate_on_submit():
-        model_predict = load_model('model')
+        pred_model = load_model('model')
         print(form.errors)
-        pred = model_predict.predict(customer)
+        pred = pred_model.predict(customer)
 
 
         print(pred[0][0])
