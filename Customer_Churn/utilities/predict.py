@@ -35,7 +35,7 @@ learning_rate = 0.2
 decay_rate= learning_rate/epochs
 momentum = 0.8
 
-sgd = SGD(learning_rater=learning_rate,momentum=momentum,decay=decay_rate,nesterov=False)
+sgd = SGD(learning_rate=learning_rate,momentum=momentum,decay=decay_rate,nesterov=False)
 
 
 
