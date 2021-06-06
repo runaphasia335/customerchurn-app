@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Body ------------------------------------- -->
+<div class="jumbotron" style="padding: 5px; background-color: aqua">
+  <h1 style="text-align: center; font-size: 50px">Outer Heaven Financial</h1>
+</div>
+<body style="background-color: aqua">
+
+<h2 style="text-align: center">Choose what one of the following: </h2>
+<div style="text-align: center">
+<ul>
+
+    <a href="{{url_for('home.attributes')}}"><h4>Predict</h4></a><br>
+
+    <a href="{{url_for('visuals.charts')}}"><h4>Visualizations</h4></a>
+
+</ul>
+</div>
+
+</body>
+
+
+{% endblock %}
