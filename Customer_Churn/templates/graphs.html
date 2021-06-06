@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Body ------------------------------------- -->
+    <div class="jumbotron" style="padding: 15px; background-color: rgb(17,17,17)">
+    <h1 style="text-align: center; color: aqua;">Outer Heaven Financial</h1>
+  </div>
+  <body style="font-family:arial, sans-serif; background-color: rgb(17,17,17)">
+
+    <!-- <h3><a href="/">Return to Home page</a></h3> -->
+    <h3 style="color: aqua;text-align:center">View relationships between each parameter. Change Z-Axis to adjust Heatmap</h3>
+
+<!-- Forms ----------------------------------- -->
+
+
+
+    <form action="{{url_for('visuals.charts')}}" method="POST" style="text-align: center">
+
+    <div style="display: inline-flex;padding-bottom: 20px;align-content: center">
+      {{ form.hidden_tag() }}
+      <h5 style="color: aqua; padding-right: 5px;padding-left: 5px">X</h5>{{form.x_axis}}
+      <h5 style="color: aqua; padding-right: 5px;padding-left: 5px">Y</h5>{{form.y_axis}}
+      <h5 style="color: aqua; padding-right: 5px;padding-left: 5px">Z</h5>{{form.z_axis}}
+      <h5 style="padding-left: 5px"></h5>{{ form.submit() }}
+
+
+    </div>
+      </form>
+
+
+<!-- Charts for plots -->
+      <div class="graph-container" style="align-content: center;padding-bottom: 30px">
+
+        <div id="chart" class="chart"></div><br>
+
+        <div class="chart3" id="chart3"></div><br>
+
+        </div>
+
+
+      <div class="graph-container2" style='align-content: center;'>
+
+        <div class="chart2" id="chart2"></div>
+
+        <div class="chart4" id="chart4"></div>
+      </div>
+
+  </body>
+
+  <style>
+    .graph-container{
+      display: flex;
+      justify-content: space-evenly;
+      max-width: 100%
+      height: auto;
+      --bs-gutter-x: 1.5rem;
+      --bs-gutter-y: 0;
+      flex-wrap: wrap;
+      margin-top: calc(var(--bs-gutter-y) * -1);
+      margin-right: calc(var(--bs-gutter-x)/ -2);
+      margin-left: calc(var(--bs-gutter-x)/ -2);
+    }
+    .graph-container2{
+      display: flex;
+      justify-content: space-evenly;
+      max-width: 100%
+      height: auto;
+      --bs-gutter-x: 1.5rem;
+      --bs-gutter-y: 0;
+      flex-wrap: wrap;
+      margin-top: calc(var(--bs-gutter-y) * -1);
+      margin-right: calc(var(--bs-gutter-x)/ -2);
+      margin-left: calc(var(--bs-gutter-x)/ -2);
+    }
+
+  </style>
+
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <script type="text/javascript">
+    var graphs = {{plot | safe}};
+    Plotly.plot('chart',graphs,{});
+  </script>
+
+  <script type="text/javascript">
+    var graphs2 = {{plot2 | safe}};
+    Plotly.plot('chart2',graphs2,{});
+  </script>
+
+  <script type="text/javascript">
+    var graphs3 = {{plot3 | safe}};
+    Plotly.plot('chart3',graphs3,{});
+  </script>
+
+  <script type="text/javascript">
+    var graphs4 = {{plot4 | safe}};
+    Plotly.plot('chart4',graphs4,{});
+  </script>
+
+
+
+{% endblock %}

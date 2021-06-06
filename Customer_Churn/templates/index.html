@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="jumbotron" style="padding: 5px; background-color: aqua">
+  <h1 style="text-align: center; font-size: 50px">Outer Heaven Financial</h1>
+</div>
+    <body style="background-color: aqua">
+    <div class="flex-container">
+        <h1 class="please">
+            Please log in:
+        </h1>
+    <form method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.username.label }}{{ form.username }}<br>
+    {{ form.password.label }}{{ form.password }}
+    {{ form.submit() }}
+    </form>
+    <ul>
+        <li>
+            <a href="{{ url_for('main.register') }}">Register</a>
+        </li>
+    </ul>
+    <style>
+    .flex-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        padding-top: 100px;
+    }
+
+    </style>
+
+    </div>
+
+    </body>
+
+
+
+{% endblock %}

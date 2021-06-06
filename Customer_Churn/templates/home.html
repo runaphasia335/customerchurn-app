@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron" style="padding: 5px; background-color: aqua">
+  <h1 style="text-align: center; font-size: 50px">Outer Heaven Financial</h1>
+</div>
+    <body style="background-color: aqua">
+
+      <!-- Form for predicitive model parameters--------------- -->
+      <h4 style="text-align:center">Input customer parameters and press "Run"</h4>
+    <div class="input-output" id="input-output">
+      <div class="attributes" id="attributes">
+
+    <form action="{{url_for('home.attributes')}}" method="POST">
+    {{ form.hidden_tag() }}
+    {{ form.CreditScore.label}}<br>{{ form.CreditScore }}<br>
+    {{ form.Gender.label }}<br>{{ form.Gender }}<br>
+    {{ form.Age.label }}<br>{{ form.Age }}<br>
+    {{ form.Balance.label}}<br> {{form.Balance}}<br>
+    {{ form.Tenure.label }}<br>{{ form.Tenure }}<br>
+    {{ form.NumOfProducts.label }}<br>{{ form.NumOfProducts }}<br>
+    {{ form.HasCrCard.label }}<br>{{ form.HasCrCard }}<br>
+    {{ form.IsActiveMember.label }}<br>{{ form.IsActiveMember }}<br>
+    {{ form.EstimatedSalary.label }}<br>{{ form.EstimatedSalary }}<br>
+    {{ form.submit() }}
+
+    </form>
+
+    </div>
+    <form class="" action="{{url_for('home.attributes')}}" method="GET">
+      <div class="textarea" id="textarea">
+        <textarea name="results" rows="15" cols="45" disabled>
+          Customer with parameters of:
+          Credit Score = {{credit_score}}
+          Gender = {{gender}}
+          Age = {{age}}
+          Balance = {{balance}}
+          Tenure = {{tenure}}
+          # of Products = {{num_products}}
+          Has Credit Card = {{credit_card}}
+          Is Active = {{active}}
+          Estimated Salary = {{salary}}
+
+          Has a churn prediction of: {{result}}
+
+        </textarea>
+      </div>
+
+    </form>
+
+
+      </div>
+    <style>
+
+       .input-output{
+        display: flex;
+        justify-content: center;
+      }
+      #textarea{
+        padding-left: 10px;
+        margin-top: 13%;
+
+      }
+      #attributes{
+
+      }
+
+    </style>
+
+<!-- ------------------------------------------------------------------------ -->
+
+    </body>
+
+{% endblock %}

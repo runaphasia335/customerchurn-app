@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="jumbotron" style="padding: 5px; background-color: aqua">
+  <h1 style="text-align: center; font-size: 50px">Outer Heaven Financial</h1>
+</div>
+  <body style="background-color: aqua">
+
+    <div>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.username.label }}{{ form.username }}<br>
+        {{ form.password.label }}{{ form.password }}<br>
+        {{ form.submit() }}
+
+    </form>
+
+
+    </div>
+
+    </body>
+
+
+{% endblock %}
