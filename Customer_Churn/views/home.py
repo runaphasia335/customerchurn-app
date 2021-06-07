@@ -1,8 +1,7 @@
 from flask import render_template,Blueprint,redirect,request,url_for
 from Customer_Churn.forms.forms import AttributesForm
 from flask_login import logout_user,login_required,current_user
-from Customer_Churn.utilities.predict import gender_convert,clean_result,string_to_int,scaling
-from tensorflow.keras.models import load_model
+from Customer_Churn.utilities.predict import gender_convert,string_to_int,predict_churn
 import pandas as pd
 import numpy as np
 
@@ -34,19 +33,14 @@ def attributes():
     customer = [[credit_score,gender,age,balance,tenure,num_products,credit_card,active,salary]]
 
 
-    customer = scaling(customer)
-
-
 
     if form.validate_on_submit():
-        pred_model = load_model('model')
         print(form.errors)
-        pred = pred_model.predict(customer)
-
-
-        print(pred[0][0])
-        result = clean_result(pred[0][0])
-        print(pred[0][0])
+        pred_churn = predict_churn()
+        pred_churn.predict_customer(customer)
+        print(pred_churn)
+        result = pred_churn
+        print(result)
 
         return render_template('home.html',form=form, result=result,credit_score=credit_score,gender=gender,
         tenure=tenure,age=age,balance=balance,num_products=num_products,credit_card=credit_card,active=active,
