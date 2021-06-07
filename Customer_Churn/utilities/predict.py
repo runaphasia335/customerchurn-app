@@ -15,6 +15,10 @@ class predict_churn():
     def __init__(self):
         self.scaler = MinMaxScaler()
         self.result = None
+        self.X_train = None
+        self.y_train = None
+        self.X_test = None
+        self.y_test = None
 
         df = pd.read_csv('Customer_Churn/churn.csv')
         df.drop(['RowNumber','Surname','Geography','CustomerId'],axis=1,inplace=True)
@@ -26,14 +30,14 @@ class predict_churn():
 
         y = df['Exited'].values
 
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=10)
+        self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=10)
 
 
-        self.scaler.fit(X_train)
+        self.scaler.fit(self.X_train)
 
-        X_train = self.scaler.transform(X_train)
+        X_train = self.scaler.transform(self.X_train)
 
-        X_test = self.scaler.transform(X_test)
+        X_test = self.scaler.transform(self.X_test)
 
     def __str__(self):
         return str(self.result[0][0])
@@ -58,10 +62,10 @@ class predict_churn():
 
         model.compile(optimizer=sgd,loss='binary_crossentropy',metrics=['accuracy'])
 
-        model.fit(x=X_train,y=y_train,epochs=epochs)
-        predictions = model.predict_classes(X_test)
+        model.fit(x=self.X_train,y=self.y_train,epochs=epochs)
+        predictions = model.predict_classes(self.X_test)
 
-        print(classification_report(y_test,predictions))
+        print(classification_report(self.y_test,predictions))
         model.save('model')
 
 
