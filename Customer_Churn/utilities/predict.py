@@ -30,7 +30,7 @@ X_train = scaler.transform(X_train)
 
 X_test = scaler.transform(X_test)
 
-epochs = 20
+epochs = 80
 learning_rate = 0.2
 decay_rate= learning_rate/epochs
 momentum = 0.8
@@ -39,26 +39,24 @@ sgd = SGD(learning_rate=learning_rate,momentum=momentum,decay=decay_rate,nestero
 
 
 
-def model():
-    model = Sequential()
+model = Sequential()
 
     # model.add(Dense(6,activation='relu'))
-    model.add(Dense(6,activation='relu',input_dim = 9))
-    model.add(Dense(6,activation='relu'))
-    model.add(Dense(1,activation='sigmoid'))
+model.add(Dense(6,activation='relu',input_dim = 9))
+model.add(Dense(6,activation='relu'))
+model.add(Dense(1,activation='sigmoid'))
 
-    model.compile(optimizer=sgd,loss='binary_crossentropy',metrics=['accuracy'])
+model.compile(optimizer=sgd,loss='binary_crossentropy',metrics=['accuracy'])
 
-    model.fit(x=X_train,y=y_train,epochs=epochs)
+model.fit(x=X_train,y=y_train,epochs=epochs)
 
-    return model
 
 # model_predict = model()
 # # model.fit(x=X_train,y=y_train,epochs=epochs)
 #
 #
 #
-# model_predict.save('model')
+model.save('model')
 
 def scaling(var):
     var = scaler.transform(var)
