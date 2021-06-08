@@ -75,7 +75,7 @@ class predict_churn():
         # predictions = model.predict(self.X_test)
 
         # print(classification_report(self.y_test,predictions))
-        model.save('model')
+        model.save('model.h5')
 
 
 
