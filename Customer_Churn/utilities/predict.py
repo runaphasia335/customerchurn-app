@@ -70,11 +70,11 @@ class predict_churn():
         model.add(Dense(1,activation='sigmoid'))
 
         model.compile(optimizer=sgd,loss='binary_crossentropy',metrics=['accuracy'])
-    
-        model.fit(x=self.X_train,y=self.y_train,batch_size=64,steps_per_epoch=10,epochs=epochs,callbacks=[rlrop])
-        predictions = model.predict_classes(self.X_test)
 
-        print(classification_report(self.y_test,predictions))
+        model.fit(x=self.X_train,y=self.y_train,batch_size=64,steps_per_epoch=10,epochs=epochs,callbacks=[rlrop])
+        # predictions = model.predict(self.X_test)
+
+        # print(classification_report(self.y_test,predictions))
         model.save('model')
 
 
