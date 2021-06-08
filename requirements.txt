@@ -1,4 +1,4 @@
-absl-py 
+absl-py
 alembic
 appnope
 argon2-cffi
@@ -53,9 +53,9 @@ Mako
 Markdown
 MarkupSafe
 mistune
-mkl-fft
-mkl-random
-mkl-service
+mkl-fft==1.3.0
+mkl-random=1.1.1
+mkl-service=2.3.0
 nbclient
 nbconvert
 nbformat
@@ -71,8 +71,8 @@ pickleshare
 plotly
 plotly-express
 prometheus-client
-prompt-toolkit==1.0.15
-protobuf==3.12.3
+prompt-toolkit
+protobuf
 ptyprocess
 pycparser
 Pygments
