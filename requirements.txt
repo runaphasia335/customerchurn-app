@@ -55,7 +55,7 @@ MarkupSafe
 mistune
 mkl-fft
 mkl-random
-mkl-service==2.3.0
+mkl-service
 nbclient
 nbconvert
 nbformat
