@@ -1,7 +1,7 @@
 from flask import render_template,Blueprint,redirect,request,url_for
 from Customer_Churn.forms.forms import AttributesForm
 from flask_login import logout_user,login_required,current_user
-from Customer_Churn.utilities.predict import gender_convert,string_to_int,predict_churn
+from Customer_Churn.utilities.predict import gender_convert,string_to_int,predict_churn,clean_result
 import pandas as pd
 import numpy as np
 

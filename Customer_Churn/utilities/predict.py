@@ -1,4 +1,4 @@
-from sklearn.cluster import KMeans
+
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import MinMaxScaler
 import joblib
@@ -88,9 +88,9 @@ class predict_churn():
 
         self.result = pred.predict(customer)
 
-        result = round(int(self.result)*100,2)
+        result = int(self.result)
 
-        return result
+        return clean_result(result)
 
 
 
@@ -115,18 +115,13 @@ def string_to_int(var):
         zero = 0
         return zero
 
+def clean_result(v):
 
+    x = round(v*100,2)
 
-pc = predict_churn()
-pc.train_create()
-# def clean_result(v):
-#
-#     x = round(v*100,2)
-#
-#     return x
-    # if x < 50.0:
-    #     low = 'Low'
-    #     return low
-    # elif x > 50.0:
-    #     high = 'High'
-    #     return high
+    if x < 50.0:
+        low = 'Low'
+        return low
+    elif x > 50.0:
+        high = 'High'
+        return high
