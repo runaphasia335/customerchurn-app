@@ -43,10 +43,6 @@ itsdangerous
 Jinja2
 joblib
 jsonschema
-jupyter-client
-jupyter-core
-jupyterlab-pygments
-jupyterlab-widgets
 Keras-Applications
 Keras-Preprocessing
 Mako
@@ -93,7 +89,7 @@ six
 SQLAlchemy
 statsmodels
 tensorboard
-tensorflow
+tensorflow-cpu
 tensorflow-estimator
 termcolor
 terminado
