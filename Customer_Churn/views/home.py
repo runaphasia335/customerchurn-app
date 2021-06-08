@@ -8,12 +8,12 @@ import numpy as np
 
 home = Blueprint('home',__name__)
 
-@home.route('/',methods=["GET","POST"])
-@login_required
-def welcome():
-    return render_template('welcome.html')
+# @home.route('/',methods=["GET","POST"])
+# @login_required
+# def welcome():
+#     return render_template('welcome.html')
 
-@home.route('/predict',methods=['GET','POST'])
+@home.route('/',methods=['GET','POST'])
 @login_required
 def attributes():
 
@@ -37,10 +37,9 @@ def attributes():
     if form.validate_on_submit():
         print(form.errors)
         pred_churn = predict_churn()
-        pred_churn.predict_customer(customer)
-        print(pred_churn)
-        result = pred_churn
-        print(result)
+        result = pred_churn.predict_customer(customer)
+
+
 
         return render_template('home.html',form=form, result=result,credit_score=credit_score,gender=gender,
         tenure=tenure,age=age,balance=balance,num_products=num_products,credit_card=credit_card,active=active,
