@@ -14,21 +14,14 @@ import pandas as pd
 import numpy as np
 
 class predict_churn():
-    # self.X_train = None
-    # self.y_train = None
-    # self.X_test = None
-    # self.y_test = None
-    # scale = MinMaxScaler()
+
     def __init__(self):
         self.X_train = None
         self.y_train = None
         self.X_test = None
         self.y_test = None
         self.result = None
-    #     self.scale_data()
-    #
-    # def scale_data(self):
-    #     self.scale.fit(self.X_train)
+
 
     def __str__(self):
         return str(self.result[0][0])
@@ -56,7 +49,7 @@ class predict_churn():
         self.X_train = scale.transform(self.X_train)
 
         self.X_test = scale.transform(self.X_test)
-        # print(X_test, "--------- 1")
+
 
         epochs = 200
         learning_rate = 0.2
@@ -77,36 +70,30 @@ class predict_churn():
         model.add(Dense(1,activation='sigmoid'))
 
         model.compile(optimizer=sgd,loss='binary_crossentropy',metrics=['accuracy'])
-        # print(X_test, "2")
+    
         model.fit(x=self.X_train,y=self.y_train,batch_size=64,steps_per_epoch=10,epochs=epochs,callbacks=[rlrop])
         predictions = model.predict_classes(self.X_test)
 
         print(classification_report(self.y_test,predictions))
-        print("saving model")
         model.save('model')
-        print("model saved")
+
 
 
     def predict_customer(self,v1):
-        print(v1)
         scaler = joblib.load("model_scale.xz")
+
         customer = scaler.transform(v1)
-        print(customer)
+
         pred = load_model('model')
+
         self.result = pred.predict(customer)
-        print(self.result)
+
         result = round(int(self.result)*100,2)
-        print(result)
+
         return result
 
 
 
-
-
-
-def scaling(var):
-    var = scaler.transform(var)
-    return var
 
 def gender_convert(gender):
     zero = None
