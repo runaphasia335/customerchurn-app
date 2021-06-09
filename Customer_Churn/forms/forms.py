@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField,SubmitField,IntegerField,SelectField
-from wtforms.validators import DataRequired, EqualTo
+from wtforms.validators import DataRequired, EqualTo,ValidationError
 from wtforms import ValidationError
 from Customer_Churn.models import User
 
@@ -12,17 +12,18 @@ class LoginForm(FlaskForm):
 
 class AttributesForm(FlaskForm):
     # Surname = StringField('Surname',validators=[DataRequired()])
-    CreditScore = IntegerField('Credit Score',validators=[DataRequired()])
-    Gender = StringField('Gender',validators=[DataRequired()])
+    CreditScore = IntegerField('Credit Score (300 to 850)',validators=[DataRequired()])
+    Gender = StringField('Gender: Male or Female',validators=[DataRequired()])
     Age = IntegerField('Age',validators=[DataRequired()])
     Tenure = IntegerField('Tenure',validators=[DataRequired()])
     Balance = IntegerField('Balance',validators=[DataRequired()])
     NumOfProducts = IntegerField('Number of Products',validators=[DataRequired()])
-    HasCrCard = StringField('Has card?',validators=[DataRequired()])
-    IsActiveMember = StringField('Is active?',validators=[DataRequired()])
+    HasCrCard = StringField('Has card? Enter "yes" or "no"',validators=[DataRequired()])
+    IsActiveMember = StringField('Is active? Enter "yes" or "no" ',validators=[DataRequired()])
     EstimatedSalary = IntegerField('Estimated Salary',validators=[DataRequired()])
-    # Exited = StringField('Exited?',validators=[DataRequired()])
     submit = SubmitField('Run')
+    reset = SubmitField('Reset')
+
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -41,5 +42,3 @@ class VisualParameters(FlaskForm):
     z_axis = SelectField(u'Z',choices=[('CreditScore'),('Gender'),('Age'),('Tenure'),('Balance'),('NumOfProducts'),('HasCrCard'),
     ('IsActiveMember'),('EstimatedSalary'),('Exited')])
     submit = SubmitField('Run')
-
-    

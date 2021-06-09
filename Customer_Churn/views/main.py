@@ -18,7 +18,7 @@ def login():
          next = request.args.get('next')
 
          if next == None or not next[0] == '/':
-            next =  url_for('home.welcome')
+            next =  url_for('home.attributes')
          return redirect(next)
    return render_template('index.html',form=form)
 

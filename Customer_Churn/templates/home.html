@@ -6,13 +6,12 @@
     <body style="background-color: aqua">
 
       <!-- Form for predicitive model parameters--------------- -->
-      <h4 style="text-align:center">Input customer parameters and press "Run"</h4>
-
+      <h3 style="text-align:center">Input customer parameters and press "Run"</h3>
+      <a href="{{url_for('home.attributes')}}"><h4 style="text-align: center">Reset</h4></a>
 
 
     <div class="input-output" id="input-output">
       <div class="attributes" id="attributes">
-
         <form action="{{url_for('home.attributes')}}" method="POST">
           {{ form.hidden_tag() }}
           {{ form.CreditScore.label}}<br>{{ form.CreditScore }}<br>
