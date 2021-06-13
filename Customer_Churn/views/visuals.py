@@ -12,10 +12,7 @@ import json
 
 visuals = Blueprint('visuals',__name__)
 
-@visuals.route('/callback',methods=["GET","POST"])
-def cb():
-    return chart_cb(request.form.get('x_axis'),request.form.get('y_axis'))
-
+# visualization page.
 @visuals.route('/visualizations',methods=['GET','POST'])
 def charts():
     form = VisualParameters()
@@ -34,7 +31,7 @@ def charts():
         z_axis = form.data.get('z_axis')
 
 
-
+# plots will be created once drop down menu values are selected
     plot = chart1(x_axis,y_axis)
     plot2 = chart2(x_axis,y_axis,z_axis)
     plot3 = chart3(x_axis,y_axis)

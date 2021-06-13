@@ -6,7 +6,7 @@ from Customer_Churn import db
 # from Customer_Churn.utilities.predict import model
 
 main = Blueprint('main', __name__)
-
+# login page if user is not logged in
 @main.route('/login',methods=['GET',"POST"])
 def login():
    form = LoginForm()
@@ -23,7 +23,7 @@ def login():
    return render_template('index.html',form=form)
 
 
-
+# registration page. after registration, user will be redirected to login page
 @main.route('/register',methods=['GET','POST'])
 def register():
    form = RegistrationForm()

@@ -14,6 +14,8 @@ home = Blueprint('home',__name__)
 # def welcome():
 #     return render_template('welcome.html')
 
+
+# Home page where the user will input the parameters needed for predictions
 @home.route('/',methods=['GET','POST'])
 @login_required
 def attributes():
@@ -21,7 +23,7 @@ def attributes():
     form = AttributesForm()
 
     if form.validate_on_submit():
-
+# parameters for customer predictions
         credit_score = form.data.get('CreditScore')
         gender = gender_convert(form.data.get('Gender'))
         tenure = form.data.get('Tenure')
@@ -32,7 +34,7 @@ def attributes():
         active = string_to_int(form.data.get('IsActiveMember'))
         salary = form.data.get('EstimatedSalary')
 
-
+# create new customer instance for plug in
         customer = [[credit_score,gender,age,balance,tenure,num_products,credit_card,active,salary]]
 
 

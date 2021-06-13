@@ -20,24 +20,7 @@ former = df.loc[df['Exited']==0]
 current = df.loc[df['Exited']==1]
 
 
-
-# def all_plots(v1,v2,v3):
-#
-#     fig = make_subplots(rows=2,cols=2,specs=[[{'type': "scatter"},{'type': 'histogram'}],
-#                                             [{'type': "heatmap"},{'type': 'scatter'}]],)
-#
-#     fig.add_trace(go.Scattergl(name='Former',x=former[v1],y=former[v2],mode='markers',marker_color='blue'),row=1,col=1)
-#     fig.add_trace(go.Histogram(name="Former",x=former[v1],y=former[v2]),row=2,col=1)
-#     fig.add_trace(go.Heatmap(name="Former",z=former[v3],x=former[v1],y=former[v2],colorscale='Viridis'),row=1,col=2)
-#     fig.update_layout(width=1200,height=1100,autosize=False,margin=dict(t=2,b=2,l=5,r=5),template="plotly_dark")
-#
-#     plot = json.dumps(fig,cls=plotly.utils.PlotlyJSONEncoder)
-#     return plot
-
 def chart1(v1,v2):
-
-    # df = pd.read_csv('Customer_Churn/churn.csv')
-    # df.drop(['RowNumber','Surname','Geography','CustomerId'],axis=1,inplace=True)
 
     fig =go.Figure(data=[go.Scattergl(name='Former',x=former[v1],y=former[v2],mode='markers',marker_color='blue'),
     go.Scattergl(name='Current',x=current[v1],y=current[v2],mode='markers',marker_color='red')])
@@ -65,18 +48,12 @@ def chart1(v1,v2):
 
 def chart2(v1,v2,v3):
 
-    # df = pd.read_csv('Customer_Churn/churn.csv')
-    # df.drop(['RowNumber','Surname','Geography','CustomerId'],axis=1,inplace=True)
-    # former = df.loc[df['Exited']==0]
-    # current = df.loc[df['Exited']==1]
 
     fig2 = go.Figure(data=[go.Heatmap(name="Former",z=former[v3],x=former[v1],y=former[v2],colorscale='Viridis'),
     go.Heatmap(name="Current",z=current[v3],x=current[v1],y=current[v2],colorscale='Viridis')])
-    # fig2 = go.Figure(data=[go.Surface(name="Surface",z=df[z_axis],x=df[x_axis],y=df[y_axis],colorscale='Viridis')])
+
 
     fig2.update_layout(title='HEATMAP',width=600,height=500,autosize=False,margin=dict(t=30,b=2,l=5,r=5),template="plotly_dark")
-
-    # fig2.update_scenes(aspectratio=dict(x=1,y=1,z=0.7),aspectmode="manual")
 
 
     fig2.update_layout(updatemenus=[dict(active=0,buttons=list([dict(label="Both",
@@ -100,11 +77,6 @@ def chart2(v1,v2,v3):
 
 
 def chart3(v1,v2):
-
-    # df = pd.read_csv('Customer_Churn/churn.csv')
-    # df.drop(['RowNumber','Surname','Geography','CustomerId'],axis=1,inplace=True)
-    # former = df.loc[df['Exited']==0]
-    # current = df.loc[df['Exited']==1]
 
 
     fig3 = go.Figure(data=[go.Histogram(name="Former",x=former[v1],y=former[v2],marker_color='blue'),

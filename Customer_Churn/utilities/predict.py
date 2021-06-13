@@ -25,7 +25,7 @@ class predict_churn():
 
     def __str__(self):
         return str(self.result[0][0])
-
+# NN model will be created here. Dataset will be cleaned, model will be trained.
     def train_create(self):
 
         df = pd.read_csv('Customer_Churn/churn.csv')
@@ -40,17 +40,20 @@ class predict_churn():
 
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(X, y, test_size=0.2, random_state=10)
 
+# MinMaxScaler instance created, fitted then saved for later use
+
         scale = MinMaxScaler()
 
         scale.fit(self.X_train)
 
         joblib.dump(scale,"model_scale.xz")
+# <----------------------------------------------------------->
 
         self.X_train = scale.transform(self.X_train)
 
         self.X_test = scale.transform(self.X_test)
 
-
+# model creation ------------------------------>
         epochs = 200
         learning_rate = 0.2
         decay_rate= learning_rate/epochs
@@ -72,19 +75,18 @@ class predict_churn():
         model.compile(optimizer=sgd,loss='binary_crossentropy',metrics=['accuracy'])
 
         model.fit(x=self.X_train,y=self.y_train,batch_size=64,steps_per_epoch=10,epochs=epochs,callbacks=[rlrop])
-        # predictions = model.predict(self.X_test)
 
-        # print(classification_report(self.y_test,predictions))
+    # model saved after trained and fitted
         model.save('model.h5')
 
 
-
+# function will be called after form validation is completed
     def predict_customer(self,v1):
         scaler = joblib.load("model_scale.xz")
 
         customer = scaler.transform(v1)
 
-        pred = load_model('model')
+        pred = load_model('model.h5')
 
         self.result = pred.predict(customer)
 
@@ -94,7 +96,7 @@ class predict_churn():
 
 
 
-
+# converts Gender column values into integers
 def gender_convert(gender):
     zero = None
     one = None
@@ -104,7 +106,9 @@ def gender_convert(gender):
     elif gender == "Male" or "male":
         one = 1
         return one
-#
+
+
+# converts strings to integers
 def string_to_int(var):
     zero = None
     one = None
@@ -114,6 +118,7 @@ def string_to_int(var):
     elif var == 'no' or 'No':
         zero = 0
         return zero
+
 
 def clean_result(v):
 
